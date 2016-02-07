@@ -24,6 +24,20 @@ class JsonFile implements DbalInterface
     public function __construct($dataSource)
     {
         $this->dataSource   = $dataSource;
+
+        $this->checkDataSourceExists();
+
+    }
+
+    /**
+     * Checks if exists the datasource given
+     *
+     * @throws \InvalidArgumentException
+     */
+    private function checkDataSourceExists()
+    {
+        if (!is_dir($this->dataSource) && !$this->existsDocument($this->dataSource))
+            throw new \InvalidArgumentException("Any Json could be retrieved because {$this->dataSource} not exists");
     }
 
     /**
@@ -32,6 +46,8 @@ class JsonFile implements DbalInterface
      * @param mixed $identifier
      * @param string $table
      * @return array
+     *
+     * @throws UnexpectedValueException
      */
     public function retrieve($identifier, $table)
     {
