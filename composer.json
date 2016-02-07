@@ -1,0 +1,15 @@
+{
+    "name": "uvinum/recruiting",
+    "description": "My case of study for Uvinum",
+    "authors": [
+        {
+            "name": "Miguel Florido",
+            "email": "miguel5fv@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "Uvinum\\Recruiting": "src/"
+        }
+    }
+}
