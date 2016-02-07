@@ -27,7 +27,7 @@ The **value 0** means the product has been inserted.
 
 **Value 1** means more amount of products that the shopping cart accepts, in the exercise is 50.
 
-**Value 2*+ means more type of products than expected. In this exercise is 10
+**Value 2** means more type of products than expected. In this exercise is 10
 
 #### removeProduct
 ```
@@ -42,7 +42,7 @@ Returns a json code like this:
 
 **False** means no product found, so then no product deleted.
 
-**true** means product deleted.
+**True** means product deleted.
 
 #### totalAmount
 ```
@@ -74,9 +74,9 @@ Where the symbol is the currency symbol, and exchange is the amount in the curre
 
 I have divided the code in three layers, trying to follow the Hexagonal Architecture:
 
-- ApplicationLayer - Here I have included presentationLayer to keep it simple
-- DomainLayer
-- InfrastructureLayer
+- **ApplicationLayer** - Here I have included presentationLayer to keep it simple
+- **DomainLayer**
+- **InfrastructureLayer**
 
 The literatury to decided for that structure file comes from this articles:
 
