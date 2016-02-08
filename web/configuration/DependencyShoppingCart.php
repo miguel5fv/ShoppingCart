@@ -1,17 +1,17 @@
 <?php
 require_once 'Dependency.php';
 
-use Uvinum\Recruiting\ApplicationLayer\View\JsonThinTemplateEngine;
-use Uvinum\Recruiting\DomainLayer\Service\ShoppingCartCaseOfStudyService;
-use Uvinum\Recruiting\ApplicationLayer\Controller\ShoppingCartController;
-use Uvinum\Recruiting\InfrastructureLayer\Repository\BasketRepository;
-use Uvinum\Recruiting\DomainLayer\Service\CurrencyExchangeUvinumService;
-use Uvinum\Recruiting\InfrastructureLayer\Persistence\Api\YqlQueryBuilder;
+use Uvinum\Recruiting\Application\View\JsonThinTemplateEngine;
+use Uvinum\Recruiting\Domain\Service\ShoppingCartCaseOfStudyService;
+use Uvinum\Recruiting\Application\Controller\ShoppingCartController;
+use Uvinum\Recruiting\Infrastructure\Repository\BasketRepository;
+use Uvinum\Recruiting\Domain\Service\CurrencyExchangeUvinumService;
+use Uvinum\Recruiting\Infrastructure\Persistence\Api\YqlQueryBuilder;
 
-use Uvinum\Recruiting\InfrastructureLayer\Repository\CurrencyRepository;
-use Uvinum\Recruiting\InfrastructureLayer\Persistence\JsonApi;
-use Uvinum\Recruiting\InfrastructureLayer\Persistence\JsonFile;
-use Uvinum\Recruiting\DomainLayer\Aggregate\Basket;
+use Uvinum\Recruiting\Infrastructure\Repository\CurrencyRepository;
+use Uvinum\Recruiting\Infrastructure\Persistence\JsonApi;
+use Uvinum\Recruiting\Infrastructure\Persistence\JsonFile;
+use Uvinum\Recruiting\Domain\Aggregate\Basket;
 
 /**
  * Class which contains all of the dependencies of the ShoppingCart controller.
@@ -58,9 +58,9 @@ class DependencyShoppingCart implements Dependency
      */
     private function configureCurrencyService(array $applicationVariables)
     {
-        $connector      = new Uvinum\Recruiting\InfrastructureLayer\Persistence\Api\YahooConnector();
-        $resultSet      = new Uvinum\Recruiting\InfrastructureLayer\Persistence\Api\YahooResultSet();
-        $currency       = new Uvinum\Recruiting\DomainLayer\ValueObject\Currency();
+        $connector      = new Uvinum\Recruiting\Infrastructure\Persistence\Api\YahooConnector();
+        $resultSet      = new Uvinum\Recruiting\Infrastructure\Persistence\Api\YahooResultSet();
+        $currency       = new Uvinum\Recruiting\Domain\ValueObject\Currency();
 
         $currency->symbol   = $applicationVariables['currency'];
 
