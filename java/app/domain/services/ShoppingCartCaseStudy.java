@@ -13,11 +13,13 @@ import javax.inject.Inject;
 public class ShoppingCartCaseStudy implements ShoppingCartInterface {
 
     private final Basket basket;
+    private CurrencyExchangeInterface currencyEchange;
 
     @Inject
-    public ShoppingCartCaseStudy(Basket basket)
+    public ShoppingCartCaseStudy(Basket basket, CurrencyExchangeInterface currencyEchange)
     {
         this.basket = basket;
+        this.currencyEchange = currencyEchange;
     }
 
     @Override
@@ -45,6 +47,6 @@ public class ShoppingCartCaseStudy implements ShoppingCartInterface {
 
     @Override
     public float changeCurrency(Currency currency) {
-        return 0;
+        return this.currencyEchange.changeCurrency(this.basket.getTotalAmount(), currency);
     }
 }

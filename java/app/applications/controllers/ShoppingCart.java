@@ -86,6 +86,6 @@ public class ShoppingCart extends Controller {
         Currency currency = new Currency();
         currency.symbol = symbol;
 
-        return ok("From 10 US$ to " + this.shoppingCart.changeCurrency(currency));
+        return ok("total amount in " + symbol + " is " + this.shoppingCart.changeCurrency(currency));
     }
 }

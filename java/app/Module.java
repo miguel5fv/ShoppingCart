@@ -1,7 +1,10 @@
 import com.google.inject.AbstractModule;
 import domain.agregations.Basket;
+import domain.services.CurrencyExchangeInterface;
+import domain.services.CurrencyExchangeLocal;
 import domain.services.ShoppingCartCaseStudy;
 import domain.services.ShoppingCartInterface;
+import domain.valueobjects.Currency;
 
 import java.time.Clock;
 
@@ -24,6 +27,10 @@ public class Module extends AbstractModule {
 
         bind(ShoppingCartInterface.class).to(ShoppingCartCaseStudy.class);
         bind(Basket.class).toInstance(new Basket(1, 10, 3));
+
+        Currency base = new Currency();
+        base.symbol = "Eur";
+        bind(CurrencyExchangeInterface.class).toInstance(new CurrencyExchangeLocal(base));
     }
 
 }
