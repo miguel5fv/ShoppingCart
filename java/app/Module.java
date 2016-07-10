@@ -1,4 +1,5 @@
 import com.google.inject.AbstractModule;
+import domain.agregations.Basket;
 import domain.services.ShoppingCartCaseStudy;
 import domain.services.ShoppingCartInterface;
 
@@ -22,6 +23,7 @@ public class Module extends AbstractModule {
         bind(Clock.class).toInstance(Clock.systemDefaultZone());
 
         bind(ShoppingCartInterface.class).to(ShoppingCartCaseStudy.class);
+        bind(Basket.class).toInstance(new Basket(1, 10, 3));
     }
 
 }

@@ -1,6 +1,7 @@
 package domain.services;
 
 import domain.entities.Product;
+import domain.enums.BasketStatus;
 import domain.valueobjects.Currency;
 
 /**
@@ -12,9 +13,9 @@ public interface ShoppingCartInterface {
      *  Adds a new method
      * @param product
      * @param amount
-     * @return boolean
+     * @return BasketStatus
      */
-    boolean addProduct(Product product, int amount);
+    BasketStatus addProduct(Product product, int amount);
 
     /**
      * Remove a given product

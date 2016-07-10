@@ -1,6 +1,7 @@
 package applications.controllers;
 
 import domain.entities.Product;
+import domain.enums.BasketStatus;
 import domain.services.ShoppingCartInterface;
 import domain.valueobjects.Currency;
 import org.apache.http.client.HttpClient;
@@ -26,12 +27,15 @@ public class ShoppingCart extends Controller {
     }
 
     /**
-     * An action that renders an HTML page with a welcome message.
-     * The configuration in the <code>routes</code> file means that
-     * this method will be called when the application receives a
-     * <code>GET</code> request with a path of <code>/</code>.
+     * @param id
+     * @param unitPrice
+     * @param offerPrice
+     * @param minAmountForOffer
+     * @param amount
+     *
+     * @return Result
      */
-   public Result addProduct(
+    public Result addProduct(
             int id,
             float unitPrice,
             float offerPrice,
@@ -39,24 +43,45 @@ public class ShoppingCart extends Controller {
             int amount
     ) {
        Product product = new Product(id, unitPrice, offerPrice, minAmountForOffer);
-       if (this.shoppingCart.addProduct(product, amount))
-           return ok("Product added");
-       else
-           return internalServerError("Error while storing");
+       BasketStatus additionFeedback = this.shoppingCart.addProduct(product, amount);
+
+       switch (additionFeedback) {
+           case ADD_PRODUCT_OK:
+               return ok("Product added");
+           case ADD_PRODUCT_FULL_BASKET:
+               return internalServerError("Error: Basket full");
+           case ADD_PRODUCT_MAX_UNITS:
+               return internalServerError("Error: Maximum number of units");
+           default:
+               return internalServerError("Other error");
+       }
    }
 
+    /**
+     * @param id
+     *
+     * @return Result
+     */
     public Result removeProduct(int id) {
         if (this.shoppingCart.removeProduct(id))
-            return ok("Product removed");
+            return ok("Product removed: " + id);
         else
             return notFound();
     }
 
+    /**
+     * @return Result
+     */
     public Result totalAmount() {
 
         return ok("Total: " + this.shoppingCart.totalAmount());
     }
 
+    /**
+     * @param symbol
+     *
+     * @return Result
+     */
     public Result currencyExchange(String symbol) {
         Currency currency = new Currency();
         currency.symbol = symbol;
