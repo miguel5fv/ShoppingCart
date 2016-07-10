@@ -3,9 +3,9 @@
 # ~~~~
 
 PUT     /shoppingCart/:id/:unitPrice/:offerPrice/:minAmountForOffer/:amount applications.controllers.ShoppingCart.addProduct(id: Int, unitPrice: Float, offerPrice: Float, minAmountForOffer: Int, amount: Int )
-DELETE  /shoppingCart   applications.controllers.ShoppingCart.removeProduct
+DELETE  /shoppingCart/:id   applications.controllers.ShoppingCart.removeProduct(id: Int)
 GET     /shoppingCart   applications.controllers.ShoppingCart.totalAmount
-GET     /shoppingCart/currency   applications.controllers.ShoppingCart.currencyExchange
+GET     /shoppingCart/currency/:symbol   applications.controllers.ShoppingCart.currencyExchange(symbol: String)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

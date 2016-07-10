@@ -8,10 +8,9 @@ public class Product {
     public float unitPrice;
     public float offerPrice;
     public int minAmountForOffer;
-    public int amount;
 
     public Product() {
-        this(0,0,0,0,0);
+        this(0,0,0,0);
     }
 
     /**
@@ -19,20 +18,17 @@ public class Product {
      * @param unitPrice
      * @param offerPrice
      * @param minAmountForOffer
-     * @param amount
      */
     public Product(
             int id,
             float unitPrice,
             float offerPrice,
-            int minAmountForOffer,
-            int amount
+            int minAmountForOffer
     ) {
 
         this.id = id;
         this.unitPrice = unitPrice;
         this.offerPrice = offerPrice;
         this.minAmountForOffer = minAmountForOffer;
-        this.amount = amount;
     }
 }

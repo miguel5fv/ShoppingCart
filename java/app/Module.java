@@ -1,4 +1,7 @@
 import com.google.inject.AbstractModule;
+import domain.services.ShoppingCartCaseStudy;
+import domain.services.ShoppingCartInterface;
+
 import java.time.Clock;
 
 /**
@@ -17,8 +20,8 @@ public class Module extends AbstractModule {
     public void configure() {
         // Use the system clock as the default implementation of Clock
         bind(Clock.class).toInstance(Clock.systemDefaultZone());
-        // Ask Guice to create an instance of ApplicationTimer when the
-        // application starts.
+
+        bind(ShoppingCartInterface.class).to(ShoppingCartCaseStudy.class);
     }
 
 }
